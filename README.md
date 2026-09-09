@@ -1,6 +1,6 @@
 # kylemclaren/homebrew-tap
 
-Personal Homebrew tap for Kyle McLaren's macOS apps.
+Personal Homebrew tap for Kyle McLaren's apps and command-line tools.
 
 ## Install
 
@@ -14,6 +14,32 @@ Or in one step:
 ```
 brew install --cask kylemclaren/tap/container-ui
 ```
+
+## Command-line tools
+
+```sh
+brew install kylemclaren/tap/sprite-tunnel
+```
+
+| Formula | Platforms | Source |
+| --- | --- | --- |
+| [`sprite-tunnel`](Formula/sprite-tunnel.rb) | macOS and Linux, Intel and ARM | [kylemclaren/sprite-tunnel](https://github.com/kylemclaren/sprite-tunnel) |
+
+The formula includes a Linux/amd64 relay for installation onto a Sprite:
+
+```sh
+sprite-tunnel install --sprite my-app \
+  --binary "$(brew --prefix sprite-tunnel)/libexec/sprite-tunnel-linux-amd64"
+```
+
+Use `SPRITES_TOKEN` or `--api-token-file` for installation. The client itself is available as `sprite-tunnel` on your PATH.
+
+## Updating sprite-tunnel
+
+1. Update the version and archive URLs in `Formula/sprite-tunnel.rb`.
+2. Copy the four platform hashes from the published release's `checksums.txt`; update the `linux-relay` resource hash too.
+3. Run `brew install kylemclaren/tap/sprite-tunnel` and `brew test kylemclaren/tap/sprite-tunnel`.
+4. Push the formula update; CI verifies real Homebrew installations on macOS and Linux.
 
 ## Casks
 

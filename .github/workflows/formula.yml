@@ -1,0 +1,32 @@
+name: Formula
+
+on:
+  push:
+    branches: [main]
+    paths: ['Formula/**', '.github/workflows/formula.yml']
+  pull_request:
+    paths: ['Formula/**', '.github/workflows/formula.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    name: Install and test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - name: Set up Homebrew and check out this tap
+        uses: Homebrew/actions/setup-homebrew@c722b5d961eb7f3ebec81ec2e5584faf7c3cff5d
+        with:
+          stable: true
+      - name: Install published binary and test formula
+        run: |
+          brew install kylemclaren/tap/sprite-tunnel
+          brew test kylemclaren/tap/sprite-tunnel
+          sprite-tunnel --version
