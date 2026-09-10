@@ -1,6 +1,6 @@
 cask "container-ui" do
-  version "0.5.0"
-  sha256 "ce6b679c45d9f6998c7282681e665b43b9207ba1326f5fd93749f47efbd066f3"
+  version "0.6.0"
+  sha256 "fd8aaa56122538ed1e37f1c1403beeca5b56b4deb8cf32f6821c9161379459db"
 
   url "https://github.com/kylemclaren/container-ui/releases/download/v#{version}/ContainerUI-#{version}.dmg",
       verified: "github.com/kylemclaren/container-ui/"
